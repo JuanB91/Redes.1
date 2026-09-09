@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1821079042644615970}
   - component: {fileID: 2350158126647742294}
   - component: {fileID: 2994050775909410173}
+  - component: {fileID: -6718847779586148514}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   - {fileID: 2350158126647742294}
   - {fileID: 4532700784168896519}
   - {fileID: 2994050775909410173}
+  - {fileID: -6718847779586148514}
   ForceRemoteRenderTimeframe: 0
 --- !u!54 &1821079042644615970
 Rigidbody:
@@ -264,3 +266,15 @@ MonoBehaviour:
   _maxLife: 100
   _bulletPrefab: {fileID: 5960629626158780941, guid: 737b86c1bb19bbb40a92478ecb6c7757, type: 3}
   _bulletSpawnPoint: {fileID: 5092540440184571988}
+--- !u!114 &-6718847779586148514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008271661077661856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9857954494feb40498d8299ff593d2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
