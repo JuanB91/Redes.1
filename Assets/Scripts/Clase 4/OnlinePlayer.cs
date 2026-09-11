@@ -28,6 +28,8 @@ public class OnlinePlayer : NetworkBehaviour
 
     private Rigidbody _rb;
 
+    private float _normalSpeed;
+
     private void DebugLife() 
     {
         Debug.Log($"Current Life = {CurrentLife}");
@@ -43,10 +45,14 @@ public class OnlinePlayer : NetworkBehaviour
 
         //setear vida actual igual a la vida maxima
         CurrentLife = _maxLife;
-        
-        
+
+        _normalSpeed = _speed;
+
+        GameManager.Instance.AddToList(this);
+
+
         //Setear el follow target al cumplir la condicion correcta (piensen cual puede ser esa condicion)
-        
+
         GameManager.Instance.AddToList(this);
     }
     
@@ -165,6 +171,24 @@ public class OnlinePlayer : NetworkBehaviour
         Local_TakeDamage(damage);
     
     
+    }
+
+    public void ActivateSpeedPowerUp(float extraSpeed, float duration)
+    {
+        StartCoroutine(SpeedPowerUp(extraSpeed, duration));
+    }
+
+    private IEnumerator SpeedPowerUp(float extraSpeed, float duration)
+    {
+        _speed += extraSpeed;
+
+        Debug.Log($"POWER UP ACTIVADO: Velocidad aumentada a {_speed}");
+
+        yield return new WaitForSeconds(duration);
+
+        _speed = _normalSpeed;
+
+        Debug.Log("POWER UP TERMINADO: Velocidad restaurada");
     }
 
 
