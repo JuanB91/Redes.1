@@ -18,11 +18,12 @@ public class OnlinePlayer : NetworkBehaviour
     //crear referencia a la bala y a una posicion para spawnear balas.
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPoint;
-
+    [SerializeField] private float _dashForce = 12f;
 
     private bool _isJumpPressed;
     private bool _isShootPressed;
-    
+    private bool _isDashPressed;
+
     private float _horizontalInput;
 
     private Rigidbody _rb;
@@ -61,6 +62,9 @@ public class OnlinePlayer : NetworkBehaviour
         //Chequear input para ejecutar el disparo
         if (Input.GetKeyDown(KeyCode.F))
             _isShootPressed = true;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            _isDashPressed = true;
     }
 
     //En Shared la logica de fisicas se usa en el fixedUpdate
@@ -73,6 +77,12 @@ public class OnlinePlayer : NetworkBehaviour
             Jump();
             
             _isJumpPressed = false;
+        }
+        if (_isDashPressed)
+        {
+            Dash();
+
+            _isDashPressed = false;
         }
     }
 
@@ -116,6 +126,19 @@ public class OnlinePlayer : NetworkBehaviour
     {
         //aplico fuerza al rigidbody
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
+    }
+
+    void Dash()
+    {
+        Vector3 direction = transform.forward;
+
+        _rb.linearVelocity = new Vector3(
+            direction.x * _dashForce,
+            _rb.linearVelocity.y,
+            direction.z * _dashForce
+        );
+
+        Debug.Log("¡DASH!");
     }
 
     void SpawnShot()
