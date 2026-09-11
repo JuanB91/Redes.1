@@ -56,7 +56,7 @@ public class OnlinePlayer : NetworkBehaviour
         _horizontalInput = Input.GetAxis("Horizontal");
 
         //Chequear input para ejecutar el salto
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Space))
             _isJumpPressed = true;
         //Chequear input para ejecutar el disparo
         if (Input.GetKeyDown(KeyCode.F))
